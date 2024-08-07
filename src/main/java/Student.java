@@ -6,7 +6,12 @@ public class Student {
     public static void main (String[]args){
                 Scanner scanner = new Scanner(System.in);
                 int op;
-                   ConnectionJDBC.connection();
+                  Connection con=ConnectionJDBC.Connector();
+                  StudentImplent stu=new StudentImplent();
+        System.out.println("Enter name to search");
+        String name=scanner.nextLine();
+                  stu.sortedByName();
+/*
                 do {
                     System.out.println("1.INSERT");
                     System.out.println("2.SELECT");
@@ -16,6 +21,7 @@ public class Student {
                     System.out.println("6.DELETE BY id: ");
                     System.out.println("7.SORT BY ID DESC");
                     System.out.println("8.SORT BY NAME A-Z");
+                    System.out.println("8.SORT BY NAME A-Z");
                     System.out.println("Please chose one of them:");
                     op = scanner.nextInt();
                     switch (op) {
@@ -23,5 +29,7 @@ public class Student {
                     }
 
                 } while (true);
+
+ */
             }
         }

@@ -2,16 +2,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionJDBC {
-    public static Connection connection() {
+    public static Connection Connector() {
         Connection con=null;
         try {
-            String url = "jdbc:mysql://localhost:3306/stduent";
+            String url = "jdbc:mysql://localhost:3306/studentdb";
             String password = "1234567";
             String user = "root";
              con = DriverManager.getConnection(url, user, password);
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("Connection fial to connect..");
         }
         return  con;
     }

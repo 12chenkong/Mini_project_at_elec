@@ -11,7 +11,7 @@ public class ConnectionJDBC {
              con = DriverManager.getConnection(url, user, password);
 
         } catch (Exception ex) {
-            System.out.println("Connection fial to connect..");
+            System.out.println("Connection fail to connect..");
         }
         return  con;
     }

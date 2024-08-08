@@ -10,11 +10,14 @@ public class StudentImplent {
       try {
          Statement st=con.createStatement();
          ResultSet rs=st.executeQuery(query);
+          System.out.println("ID"+"\t"+"Name"+"\t"+"Score"+"\t"+"subject"+"\t\t"+"date"+"\t\t"+"time");
          while (rs.next()){
-            System.out.print(rs.getInt("id")+" ");
-            System.out.print(rs.getString("name")+" ");
-            System.out.print(rs.getFloat("Score")+" ");
-             System.out.print(rs.getString("subject")+" ");
+            System.out.print(rs.getInt("id")+"\t");
+            System.out.print(rs.getString("name")+"\t");
+            System.out.print(rs.getFloat("Score")+"\t");
+             System.out.print(rs.getString("subject")+" \t\t");
+             System.out.print(rs.getString("time")+" \t");
+             System.out.print(rs.getString("date")+" \t");
              System.out.println(" ");
          }
       }catch (SQLException e){
@@ -36,8 +39,8 @@ public class StudentImplent {
        System.out.println("Enter your subject");
        String subject=scanner.nextLine();
       try{
-            String query="INSERT INTO student(ID,name,Score,subject)" +
-                  " VALUES(?,?,?,?)";
+            String query="INSERT INTO student(ID,name,Score,subject,date,time)" +
+                  " VALUES(?,?,?,?,CURRENT_DATE(),CURRENT_TIME())";
                PreparedStatement pt = con.prepareStatement(query);
                pt.setInt(1,id);
                pt.setString(2,name);
@@ -64,6 +67,7 @@ public class StudentImplent {
             System.out.println(rs.getInt("id"));
             System.out.println(rs.getString("name"));
             System.out.println(rs.getFloat("Score"));
+            System.out.println(rs.getString("Subject"));
         }
 
       }catch (Exception e){
@@ -71,7 +75,6 @@ public class StudentImplent {
       }
     }
     // search student by name
-
     public  void getstudentByName(String name){
         String query="SELECT *FROM student WHERE name= ?";
         try{
@@ -83,6 +86,7 @@ public class StudentImplent {
                 System.out.println(rs.getInt("id"));
                 System.out.println(rs.getString("name"));
                 System.out.println(rs.getFloat("Score"));
+                System.out.println(rs.getString("Subject"));
             }
         }catch (SQLException e){
             System.out.println("Something went wrong");
@@ -95,9 +99,11 @@ public class StudentImplent {
             Statement st=con.createStatement();
             ResultSet rs=st.executeQuery(query);
             while (rs.next()){
-                System.out.println(rs.getInt("id"));
-                System.out.println(rs.getString("name"));
-                System.out.println(rs.getFloat("Score"));
+                System.out.println(rs.getInt("id")+" ");
+                System.out.println(rs.getString("name")+" ");
+                System.out.println(rs.getFloat("Score")+" ");
+                System.out.println(rs.getString("Subject")+" ");
+                System.out.println(" ");
             }
         }catch (SQLException e){
             System.out.println("something went wrong");
@@ -113,6 +119,7 @@ public class StudentImplent {
                 System.out.print(rs.getInt("id")+" ");
                 System.out.print(rs.getString("name")+" ");
                 System.out.print(rs.getFloat("Score")+" ");
+                System.out.println(rs.getString("Subject")+" ");
                 System.out.println(" ");
             }
         }catch (SQLException e){
@@ -125,7 +132,11 @@ public class StudentImplent {
         try{
            PreparedStatement pt= con.prepareStatement(sql);
            pt.setInt(1,id);
-           pt.executeUpdate();
+
+           if(pt.executeUpdate()==0){
+               System.out.println("Cannot delete there's something wrong");
+           }else
+               System.out.println("Delete successfully!");
         }catch (Exception e){
             System.out.println("something went wrong");
         }
@@ -139,12 +150,16 @@ public class StudentImplent {
         String name=scanner.nextLine();
         System.out.println("Enter updated Score: ");
         float score=scanner.nextFloat();
-       String sql="UPDATE student SET name=?,Score=? WHERE id=?";
+        scanner.nextLine();
+        System.out.println("Enter updated subject");
+        String subject=scanner.nextLine();
+       String sql="UPDATE student SET name=?,Score=?,Subject=? WHERE id=?";
        try{
            PreparedStatement pt=con.prepareStatement(sql);
            pt.setString(1,name);
            pt.setFloat(2,score);
-           pt.setInt(3,id);
+           pt.setString(3,subject);
+           pt.setInt(4,id);
           if(pt.executeUpdate()==1){
               System.out.println(" Have updated student's info successfully!");
           }else

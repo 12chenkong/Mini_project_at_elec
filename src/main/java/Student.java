@@ -9,6 +9,7 @@ public class Student {
                   Connection con=ConnectionJDBC.Connector();
                   StudentImplent stu=new StudentImplent();
                   stu.insertStudent();
+                  stu.getAllStudent();
                   /*
                 do {
                     System.out.println("1.SELECT");

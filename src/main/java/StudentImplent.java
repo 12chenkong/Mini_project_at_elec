@@ -4,20 +4,20 @@ import java.util.Scanner;
 public class StudentImplent {
    Scanner scanner=new Scanner(System.in);
    Connection con=ConnectionJDBC.Connector();
+
   // get student via JDBC from student table
    public void getAllStudent(){
       String query="SELECT*FROM student";
       try {
          Statement st=con.createStatement();
          ResultSet rs=st.executeQuery(query);
-          System.out.println("ID"+"\t"+"Name"+"\t"+"Score"+"\t"+"subject"+"\t\t"+"date"+"\t\t"+"time");
          while (rs.next()){
-            System.out.print(rs.getInt("id")+"\t");
-            System.out.print(rs.getString("name")+"\t");
-            System.out.print(rs.getFloat("Score")+"\t");
-             System.out.print(rs.getString("subject")+" \t\t");
-             System.out.print(rs.getString("time")+" \t");
-             System.out.print(rs.getString("date")+" \t");
+            System.out.print(rs.getInt("id")+" " );
+            System.out.print(rs.getString("name")+" ");
+            System.out.print(rs.getFloat("Score")+" ");
+             System.out.print(rs.getString("subject")+"  ");
+             System.out.print(rs.getString("time")+" ");
+             System.out.print(rs.getString("date")+" ");
              System.out.println(" ");
          }
       }catch (SQLException e){

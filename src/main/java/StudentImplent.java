@@ -12,12 +12,12 @@ public class StudentImplent {
          Statement st=con.createStatement();
          ResultSet rs=st.executeQuery(query);
          while (rs.next()){
-            System.out.print(rs.getInt("id")+" " );
-            System.out.print(rs.getString("name")+" ");
-            System.out.print(rs.getFloat("Score")+" ");
-             System.out.print(rs.getString("subject")+"  ");
-             System.out.print(rs.getString("time")+" ");
-             System.out.print(rs.getString("date")+" ");
+            System.out.println("id:"+rs.getInt("id")+" " );
+            System.out.println("Name:"+rs.getString("name")+" ");
+            System.out.println("Score:"+rs.getFloat("Score")+" ");
+             System.out.println("Subject:"+rs.getString("subject")+"  ");
+             System.out.println("Date:"+rs.getString("date")+" ");
+             System.out.println("Time:"+rs.getString("time")+" ");
              System.out.println(" ");
          }
       }catch (SQLException e){
@@ -38,14 +38,17 @@ public class StudentImplent {
        scanner.nextLine();
        System.out.println("Enter your subject");
        String subject=scanner.nextLine();
+       System.out.println("Enter book id");
+       int book_id=scanner.nextInt();
       try{
             String query="INSERT INTO student(ID,name,Score,subject,date,time)" +
-                  " VALUES(?,?,?,?,CURRENT_DATE(),CURRENT_TIME())";
+                  " VALUES(?,?,?,?,?,CURRENT_DATE(),CURRENT_TIME())";
                PreparedStatement pt = con.prepareStatement(query);
                pt.setInt(1,id);
                pt.setString(2,name);
                pt.setFloat(3,score);
                pt.setString(4,subject);
+               pt.setInt(5,book_id);
                int num=pt.executeUpdate();
                if(num!=0){
                   System.out.println("Correctly");

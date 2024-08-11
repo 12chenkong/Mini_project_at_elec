@@ -7,8 +7,12 @@ public class Student {
                 Scanner scanner = new Scanner(System.in);
                 int op;
                   Connection con=ConnectionJDBC.Connector();
-                  StudentImplent stu=new StudentImplent();
+                    BookImplement book=new BookImplement();
+                    GetALLBookStudent obj=new GetALLBookStudent();
+                    obj.getBookStudentInfo();
 
+         /*
+              StudentImplent stu=new StudentImplent();
                 do {
                     System.out.println("1.SELECT");
                     System.out.println("2.INSERT");
@@ -58,5 +62,7 @@ public class Student {
                     }
 
                 } while(op!=9);
+
+          */
             }
         }

@@ -41,7 +41,7 @@ public class StudentImplent {
        System.out.println("Enter book id");
        int book_id=scanner.nextInt();
       try{
-            String query="INSERT INTO student(ID,name,Score,subject,date,time)" +
+            String query="INSERT INTO student(ID,name,Score,subject,book_id,date,time)" +
                   " VALUES(?,?,?,?,?,CURRENT_DATE(),CURRENT_TIME())";
                PreparedStatement pt = con.prepareStatement(query);
                pt.setInt(1,id);
